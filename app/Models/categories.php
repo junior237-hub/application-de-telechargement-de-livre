@@ -12,4 +12,9 @@ class categories extends Model
         'nom_categorie', // Ajout de la propriété 'titre'
         
     ];
+
+    public function livres()
+    {
+        return $this->belongsTo('app\Models\categories');
+    }
 }

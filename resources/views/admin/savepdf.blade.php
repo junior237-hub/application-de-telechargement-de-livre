@@ -58,7 +58,7 @@
                         <td>{{$pdf->auteur}}</td>
                         <td>{{$pdf->domaine}}</td>
                         <td><img src="{{asset('storage/'.$pdf->image)}}" alt="" width="50px" height="50px"></td>
-                        <td><a href="{{asset('storage/'.$pdf->fichier)}}" class="btn btn-primary">Telecharger</a></td>
+                        <td><a href="{{asset('storage/'.$pdf->fichier)}}" class="btn btn-primary">Voir le document</a></td>
                         <td>{{$pdf->desc}}</td>
                         <td>
                             <form action="{{route('delete_pdf', $pdf->id)}}" method="post">
@@ -103,11 +103,12 @@
   </div>
 
   <div class="form-group mt-2">
-       <select name="domaine" id="" class="custom-select">
-        <label for="">selectionnez un domaine</label>
-         <option value=" info">infos</option>
-         <option value=" maths">maths</option>
-        
+       <select name="categorie_id" id="" class="custom-select">
+        <!-- <label for="">selectionnez une categorie</label> -->
+      
+          @foreach($categories as $categorie)
+          <option value="{{$categorie->id}}">{{$categorie->nom_categorie}}</option>
+          @endforeach
        </select>
      </div>
  

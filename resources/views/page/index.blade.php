@@ -14,11 +14,12 @@
         @foreach ($livres as $livre)
        
         <div class="d-flex text-body-secondary pt-3">
-          <svg aria-label="Placeholder: 32x32" class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32" preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
+          <!-- <svg aria-label="Placeholder: 32x32" class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32" preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
             <title> </title>
             <rect width="100%" height="100%" fill="#007bff"></rect>
             <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
-          </svg>
+          </svg> -->
+          <img src="{{asset('storage/'.$livre->image)}}" class="me-2" alt="" width="50px" height="50px">
           <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
             <div class="d-flex justify-content-between">
               <strong class="text-gray-dark">{{$livre->titre}}</strong>
