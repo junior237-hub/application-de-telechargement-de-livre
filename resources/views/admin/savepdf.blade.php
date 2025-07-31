@@ -8,6 +8,14 @@
 <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
     For more information about DataTables, please visit the <a target="_blank"
         href="https://datatables.net">official DataTables documentation</a>.</p> -->
+        @if(session('success'))
+        <div class="alert alert-success">
+        {{ session('success') }}
+       </div>
+       @elseif(session('danger'))
+        <div class="alert alert-danger">
+        {{ session('danger') }}
+       @endif
 
 <!-- DataTales Example -->
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -18,6 +26,7 @@
     
 <!-- </div> -->
 </div>
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -56,16 +65,22 @@
                         <td>{{$pdf->id}}</td>
                         <td>{{$pdf->titre}}</td>
                         <td>{{$pdf->auteur}}</td>
-                        <td>{{$pdf->domaine}}</td>
+                        <td>{{$pdf->nom_categorie}}</td>
                         <td><img src="{{asset('storage/'.$pdf->image)}}" alt="" width="50px" height="50px"></td>
                         <td><a href="{{asset('storage/'.$pdf->fichier)}}" class="btn btn-primary">Voir le document</a></td>
                         <td>{{$pdf->desc}}</td>
                         <td>
-                            <form action="{{route('delete_pdf', $pdf->id)}}" method="post">
+                            <form action="{{route('delete_pdf', $pdf->id)}}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Supprimer</button>
                             </form>
+
+                            <div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="checkNativeSwitch">
+  <label class="form-check-label" for="checkNativeSwitch">Native switch haptics</label>
+</div>
+
                     </tr>
                  </tbody>   
                 @endforeach

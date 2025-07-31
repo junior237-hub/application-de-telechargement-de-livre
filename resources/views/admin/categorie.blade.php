@@ -8,6 +8,20 @@
 <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
     For more information about DataTables, please visit the <a target="_blank"
         href="https://datatables.net">official DataTables documentation</a>.</p> -->
+        @if(session('success'))
+        <div class="alert alert-success">
+        {{ session('success') }}
+       </div>
+       @elseif(session('danger'))
+        <div class="alert alert-danger">
+        {{ session('danger') }}
+       @endif
+
+       <!-- @if(session('success'))
+        <div class="alert alert-warning">
+        {{ session('success') }}
+       </div>
+       @endif -->
 
 <!-- DataTales Example -->
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -49,7 +63,7 @@
                         <td>{{$categorie->nom_categorie}}</td>
                         
                         <td>
-                            <form action="" method="post">
+                            <form action="{{route('delete_categorie', $categorie->id)}}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Supprimer</button>

@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link href="{{asset('assets/dist/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link href="{{asset('css/offcanvas-navbar.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css">
     <script src="{{asset('assets/js/color-modes.js')}}"></script>
     <style>
       .bd-placeholder-img { font-size: 1.125rem; text-anchor: middle; user-select: none; }
@@ -47,30 +49,58 @@
     </div>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">LE POUSSE.COM</a>
+        <!-- <a class="navbar-brand" href="#">LE POUSSE.COM</a> -->
+        <img src="{{asset('img/logo1.png')}}" alt="Logo" style="height:50px; width: 200px;" />
         <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <form class="d-flex" role="search" method="GET" action="{{ route('search') }}">
+            
+            <input class="form-control me-2" name="rech" type="search" placeholder="Search" aria-label="Search" />
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
       </div>
     </nav>
-    <div class="nav-scroller bg-body shadow-sm">
-      <nav class="nav" aria-label="Secondary navigation">
-        <a class="nav-link active" aria-current="page" href="#">Domaine</a>
-        <a class="nav-link" href="#">Comptabilité</a>
-        <a class="nav-link" href="#">Finance</a>
-        <a class="nav-link" href="#">Audi</a>
-        <a class="nav-link" href="#">Informatique</a>
+    
+    <div class="nav-scroller bg-body shadow-sm mt-4 ">
+      <nav class="nav " aria-label="Secondary navigation">
+      <a class="nav-link active" aria-current="page" href="{{route('user_page')}}">Domaine</a>
+       @foreach($categories as $categorie)
+       <a class="nav-link" href="{{route('donnee_cat', $categorie->id )}}">{{$categorie->nom_categorie}}</a>
+       @endforeach
       </nav>
     </div>
+
     <main class="container">
     
      @yield('contend')
+     
     </main>
+
+    <div class="container"> 
+    <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <p>&copy; 2025 Lepousse.com. Tous droits réservés.</p>
+
+  <div style="margin: 10px 0;">
+    <a href="https://facebook.com" target="_blank" style="color: white; margin: 0 10px;">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://twitter.com" target="_blank" style="color: white; margin: 0 10px;">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="https://instagram.com" target="_blank" style="color: white; margin: 0 10px;">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://linkedin.com" target="_blank" style="color: white; margin: 0 10px;">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+  </div>
+
+  <p>Contact : contact@lepousse.com</p>
+</footer>
+
+    </div>
     <script src="../assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
     <script src="offcanvas-navbar.js" class="astro-vvvwv3sm"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>

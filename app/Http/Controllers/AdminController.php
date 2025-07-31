@@ -38,7 +38,7 @@ class AdminController extends Controller
      $this->StoreFichier($livre);
      $this->StoreImage($livre);
     //  dd($livre);
-      return back();
+    return back()->with('success', 'livre ajouté avec succès');
     }
 
     
@@ -71,10 +71,19 @@ class AdminController extends Controller
        ]);
      }
     }
-    public function delete(livre $livre){ 
-        $livre->delete();
-        return back()->with('supprimer' , 'livre supprimé avec success');
-      }
+      // public function delete(livre $livre){ 
+      //  $livre->delete();
+       
+      //   return back()->with('supprimer' , 'livre supprimé avec success');
+      // }
+
+      public function destroy($id)
+     {
+    $livre = livre::findOrFail($id);
+    $livre->delete();
+    return redirect()->back()->with('danger', 'Suppression réussie');
+   }
+
 
     // public function cathegorie(){
     //     $cathegorie = request()->validate([
@@ -89,6 +98,13 @@ class AdminController extends Controller
       return view('admin/categorie', compact('categories'));
     }
 
+    public function destroycategorie($id)
+    {
+   $categories = categories::findOrFail($id);
+   $categories->delete();
+   return redirect()->back()->with('danger', 'Suppression réussie');
+  }
+
     private function validator1(){
       return request()->validate([
            'nom_categorie'=>'required',
@@ -99,4 +115,6 @@ class AdminController extends Controller
       $categorie = categories::create($this->validator1());
       return back()->with('success', 'Catégorie ajoutée avec succès');
     }
+
+    
 }

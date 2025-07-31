@@ -1,6 +1,5 @@
-@extends('page/template')
+@extends('page.template')
 @section('contend')
-
 <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
         <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38" />
         <div class="lh-1">
@@ -34,18 +33,16 @@
       
         </div>
 
-                 
+        @endforeach
 
-       @endforeach
-
-       <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex justify-content-center mt-4">
           {{ $livres->links('pagination::bootstrap-4') }}
         </div>
 
+      
+      
         <small class="d-block text-end mt-3"><a href="#">All suggestions</a></small>
       </div>
-     
-
-
-
 @endsection
+  
+   
